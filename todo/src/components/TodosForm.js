@@ -1,8 +1,6 @@
 import React, { useReducer, useState } from "react";
 import { initialState, Reducer } from "../reducers/Reducer";
 
-import Todos from "./Todos";
-
 const TodosForm = () => {
     const [newTodo, setNewTodo] = useState("");
     const [state, dispatch] = useReducer(Reducer, initialState);
@@ -16,13 +14,16 @@ const TodosForm = () => {
     return (
         <div>
             {state.map(todo => (
-                <Todos
+                <div
+                    className={`item${todo.completed ? ' completed' : ''}`}
+                    onClick={() => {
+                        dispatch({ type: "TOGGLE_COMPLETED", id: todo.id });
+                        console.log(todo)
+                    }}
                     key={todo.id}
-                    todo={todo.item}
-                    index={state.indexOf(todo)} 
-                    item={state} 
-                    val={todo.id}
-                />
+                >
+                    <p>{todo.item}</p>
+                </div>
             ))}
             <input
                 className="todo-input"
