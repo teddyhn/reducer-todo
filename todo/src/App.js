@@ -6,6 +6,9 @@ function App() {
   return (
     <div className="App">
       <TodosForm />
+      <div className="App-header">
+        <h1>Todo App with Reducer</h1>
+      </div>
     </div>
   );
 }
