@@ -11,10 +11,18 @@ const TodosForm = () => {
         setNewTodo(e.target.value);
     };
 
+    console.log(state);
+
     return (
         <div>
             {state.map(todo => (
-                <Todos todo={todo} />
+                <Todos
+                    key={todo.id}
+                    todo={todo.item}
+                    index={state.indexOf(todo)} 
+                    item={state} 
+                    val={todo.id}
+                />
             ))}
             <input
                 className="todo-input"

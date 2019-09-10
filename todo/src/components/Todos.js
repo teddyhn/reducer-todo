@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useReducer } from "react";
+import { initialState, Reducer } from "../reducers/Reducer";
 
-const Todos = props => {
+const Todos = ({ val, todo, index, item }) => {
+    const [state, dispatch] = useReducer(Reducer, initialState);
+
     return (
-        <div>
-            <p>{props.todo.item}</p>
+        <div
+            className={`item${item[index].completed ? ' completed' : ''}`}
+            onClick={() => {
+                dispatch({ type: "TOGGLE_COMPLETED", id: val});
+                console.log(item)
+                console.log(index)
+            }}
+        >
+            <p>{todo}</p>
         </div>
     )
 }
